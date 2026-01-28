@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
 import { ArrowRight } from 'lucide-vue-next';
+import { computed } from 'vue';
 import StoreLayout from '@/layouts/store/StoreLayout.vue';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -31,6 +32,9 @@ defineProps<{
     categories: Category[];
 }>();
 
+const page = usePage();
+const storeName = computed(() => (page.props.name as string) || 'Store');
+
 const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -47,7 +51,7 @@ const formatPrice = (price: number) => {
             <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
                 <div class="mx-auto max-w-2xl text-center">
                     <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
-                        Timeless Elegance
+                        {{ storeName }}
                     </h1>
                     <p class="mt-6 text-lg leading-8 text-muted-foreground">
                         Discover our collection of premium suits and shirts, crafted with precision and designed for the modern gentleman.

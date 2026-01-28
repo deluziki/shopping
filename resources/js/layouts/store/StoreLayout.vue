@@ -14,6 +14,7 @@ import {
 const page = usePage();
 const user = computed(() => page.props.auth?.user);
 const cartCount = computed(() => (page.props.cartCount as number) || 0);
+const storeName = computed(() => (page.props.name as string) || 'Store');
 const mobileMenuOpen = ref(false);
 
 const navigation = [
@@ -31,7 +32,7 @@ const navigation = [
             <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 <!-- Logo -->
                 <Link href="/" class="flex items-center gap-2">
-                    <span class="text-xl font-bold tracking-tight">ELEGANCE</span>
+                    <span class="text-xl font-bold tracking-tight uppercase">{{ storeName }}</span>
                 </Link>
 
                 <!-- Desktop Navigation -->
@@ -136,7 +137,7 @@ const navigation = [
             <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div class="grid gap-8 md:grid-cols-4">
                     <div>
-                        <h3 class="text-lg font-semibold">ELEGANCE</h3>
+                        <h3 class="text-lg font-semibold uppercase">{{ storeName }}</h3>
                         <p class="mt-2 text-sm text-muted-foreground">
                             Premium suits and shirts for the modern gentleman.
                         </p>
@@ -166,7 +167,7 @@ const navigation = [
                     </div>
                 </div>
                 <div class="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-                    <p>&copy; {{ new Date().getFullYear() }} Elegance. All rights reserved.</p>
+                    <p>&copy; {{ new Date().getFullYear() }} {{ storeName }}. All rights reserved.</p>
                 </div>
             </div>
         </footer>
